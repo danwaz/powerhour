@@ -1,0 +1,7 @@
+build/*
+Gemfile.lock
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+.sass-cache/*
