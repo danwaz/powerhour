@@ -1,3 +1,6 @@
+models = sp.require("sp://import/scripts/api/models")
+player = models.player
+
 $ ->
   dropzone = $('#playlistDND')
   dropzone.on('dragenter', handleDragEnter)
@@ -10,7 +13,8 @@ handleDrop = (e) ->
   playlist = e.originalEvent.dataTransfer.getData('text/html')
   $(this).text($(playlist).text())
   spURI = $(playlist).attr('href')
-  console.log loadPlaylist(spURI)
+  tracks = loadPlaylist(spURI)
+  playRandom(tracks)
 
 handleDragEnter = (e) ->
   #change class
@@ -24,4 +28,16 @@ handleDragOver = (e) ->
   e.preventDefault() if e.preventDefault
 
 loadPlaylist = (spURI)->
-  sp.core.getPlaylist(spURI)
+  playlist = sp.core.getPlaylist(spURI)
+
+playRandom = (tracks) ->
+  numTracks = tracks.length
+  randIndex = Math.floor(Math.random()*numTracks)
+  trackURI = tracks.getTrack(randIndex).uri
+  player.playTrack(trackURI)
+  duration = player.track.duration - 60000
+  randStart = Math.floor(Math.random()*duration)
+  min = Math.floor(duration/60000)
+  sec = Math.floor(((duration/60000)%min)*60)
+  player.playTrack trackURI + "#" + min.toString() + ":" + sec.toString()
+

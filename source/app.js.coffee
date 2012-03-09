@@ -14,6 +14,7 @@ updatePageWithTrackDetails = ->
   else
     track = playerTrackInfo.data
     $(header).html track.name + " <br /> " + track.album.name + "<br />By: " + track.album.artist.name
+    $("#albumArt").attr("src", models.player.track.album.data.cover)
 
 sp = getSpotifyApi(1)
 models = sp.require("sp://import/scripts/api/models")
