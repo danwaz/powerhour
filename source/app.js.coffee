@@ -1,4 +1,5 @@
 require "js/libs/jquery-1.7.1"
+require "js/mylibs/dnd"
 
 init = ->
   updatePageWithTrackDetails()
