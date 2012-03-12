@@ -14,7 +14,7 @@ handleDrop = (e) ->
   $(this).text($(playlist).text())
   spURI = $(playlist).attr('href')
   tracks = loadPlaylist(spURI)
-  playRandom(tracks)
+  console.log tracks
 
 handleDragEnter = (e) ->
   #change class
@@ -29,15 +29,4 @@ handleDragOver = (e) ->
 
 loadPlaylist = (spURI)->
   playlist = sp.core.getPlaylist(spURI)
-
-playRandom = (tracks) ->
-  numTracks = tracks.length
-  randIndex = Math.floor(Math.random()*numTracks)
-  trackURI = tracks.getTrack(randIndex).uri
-  player.playTrack(trackURI)
-  duration = player.track.duration - 60000
-  randStart = Math.floor(Math.random()*duration)
-  min = Math.floor(duration/60000)
-  sec = Math.floor(((duration/60000)%min)*60)
-  player.playTrack trackURI + "#" + min.toString() + ":" + sec.toString()
 
