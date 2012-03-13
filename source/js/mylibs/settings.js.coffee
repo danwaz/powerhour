@@ -7,3 +7,4 @@ toggleShuffle = $('#shuffle').click( ->
 	else
 		player.setShuffle(true)
 )
+
