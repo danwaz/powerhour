@@ -22,3 +22,4 @@ sp = getSpotifyApi(1)
 models = sp.require("sp://import/scripts/api/models")
 player = models.player
 exports.init = init
+

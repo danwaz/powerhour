@@ -14,41 +14,31 @@ $(numLeft).html(numLeftCount)
 $(numToGo).html(numToGoCount)
 
 #timer vars
-startTime = 5
+startTime = 60
 count = startTime
 isPlaying = player.playing
 t = 0
 
 doInterval = (playing)->
-	window.clearTimeout t
-	$(timer).html(count)
-	playing = player.playing
-	t = window.setTimeout ->
-		if playing == true
-			if count > 1
-				count--
-				doInterval(playing)
-			else
-				count = startTime
-				player.next()
-				player.playing = false
-				seek = window.setTimeout ->
-					player.playing = true
-					console.log player.track.duration
-					player.position = 10000
-				, 100
-				updateProgress()
+	window.clearInterval t
+	t = window.setInterval ->
+		if count > 1
+			count--
+			$(timer).html(count)
 		else
-			window.clearTimeout t
+			count = startTime
+			#player.next()
+			#seek = window.setInterval ->
+			#, 100
+			updateProgress()
 	, 1000
 
 player.observe models.EVENT.CHANGE, (e) ->
 	isPlaying = player.playing
-	console.log "change"
 	if isPlaying == true
 		doInterval(isPlaying)
 	else
-		window.clearTimeout t
+		window.clearInterval t
 
 updateProgress = ->
 	numLeftCount--

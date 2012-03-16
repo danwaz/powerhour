@@ -14,7 +14,7 @@ handleDrop = (e) ->
   $(this).text($(playlist).text())
   spURI = $(playlist).attr('href')
   tracks = loadPlaylist(spURI)
-  console.log tracks
+  pl = processPlaylist(tracks)
 
 handleDragEnter = (e) ->
   #change class
@@ -30,3 +30,11 @@ handleDragOver = (e) ->
 loadPlaylist = (spURI)->
   playlist = sp.core.getPlaylist(spURI)
 
+processPlaylist = (playlist) ->
+  newPlaylist = []
+  i = 0
+  len =  playlist.length
+
+  while i < len
+    newPlaylist.push(playlist.getTrack(i))
+    i++
