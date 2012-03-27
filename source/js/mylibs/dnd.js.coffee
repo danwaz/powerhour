@@ -14,7 +14,7 @@ handleDrop = (e) ->
   $(this).text($(playlist).text())
   spURI = $(playlist).attr('href')
   tracks = loadPlaylist(spURI)
-  pl = processPlaylist(tracks)
+  exports.playlist = processPlaylist(tracks)
 
 handleDragEnter = (e) ->
   #change class
@@ -38,3 +38,4 @@ processPlaylist = (playlist) ->
   while i < len
     newPlaylist.push(playlist.getTrack(i))
     i++
+  return newPlaylist
