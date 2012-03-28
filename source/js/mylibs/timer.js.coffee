@@ -14,10 +14,11 @@ $(numLeft).html(numLeftCount)
 $(numToGo).html(numToGoCount)
 
 #timer vars
-startTime = 60
+startTime = 10
 count = startTime
 isPlaying = player.playing
 t = 0
+currIndex = 0
 
 doInterval = (playing)->
 	window.clearInterval t
@@ -27,10 +28,8 @@ doInterval = (playing)->
 			$(timer).html(count)
 		else
 			count = startTime
-			#player.next()
-			#seek = window.setInterval ->
-			#, 100
 			updateProgress()
+			nextTrack(exports.playlist, currIndex)
 	, 1000
 
 player.observe models.EVENT.CHANGE, (e) ->
@@ -43,6 +42,15 @@ player.observe models.EVENT.CHANGE, (e) ->
 updateProgress = ->
 	numLeftCount--
 	numToGoCount++
+	currIndex++
 	$(numLeft).html(numLeftCount)
 	$(numToGo).html(numToGoCount)
 
+nextTrack = (playlist, index) ->
+	duration = Math.floor(Math.random() * (playlist[index].duration - 60000))
+	min = Math.floor(duration/60000)
+	sec = Math.floor((duration%60000)/1000)
+	console.log "min: " + min
+	console.log "sec: " + sec
+
+	player.playTrack(playlist[index].uri + "#" + min + ":"+ sec)

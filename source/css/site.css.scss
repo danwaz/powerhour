@@ -1,4 +1,6 @@
 @import "compass";
+@import url("sp://import/css/adam.css");
+@import url("sp://import/css/shared.css");
 
 $link-color:         #0388a6;
 $link-hover-color:   #009ce0;
@@ -7,7 +9,7 @@ $link-active-color:  false;
 $link-visited-color: false;
 
 $font-color:  white;
-$font-family: sans-serif;
+$font-family: Lucida Grande;
 $base-font-size:   12px;
 $base-line-height: 18px;
 
