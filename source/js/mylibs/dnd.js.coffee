@@ -43,13 +43,20 @@ processPlaylist = (playlist) ->
 	return newPlaylist
 
 fisherYates = (arr) ->
-    i = arr.length;
-    if i == 0 then return false
+	i = arr.length;
+	if i == 0 then return false
 
-    while --i
-        j = Math.floor(Math.random() * (i+1))
-        tempi = arr[i]
-        tempj = arr[j]
-        arr[i] = tempj
-        arr[j] = tempi
-    return arr
+	while --i
+		j = Math.floor(Math.random() * (i+1))
+		tempi = arr[i]
+		tempj = arr[j]
+		arr[i] = tempj
+		arr[j] = tempi
+	return arr
+
+models.application.observe models.EVENT.LINKSCHANGED, (e) ->
+	e.stopPropagation()  if e.stopPropagation
+	playlist = e.links
+	tracks = loadPlaylist(playlist[0])
+	$('#playlistDND').html(tracks.name)
+	exports.playlist = processPlaylist(tracks)

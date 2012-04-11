@@ -1,4 +1,7 @@
 {
+    "AcceptedLinkTypes" : [
+        "playlist"
+    ],
     "BundleType": "Application",
     "AppIcon": {
         "36x18": "tutorial.png"
