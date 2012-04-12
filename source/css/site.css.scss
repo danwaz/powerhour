@@ -29,13 +29,61 @@ a {
   @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color);
 }
 
+h1{
+	font-size: 56px;
+	text-align: center;
+	background-color: #D04;
+	padding: 10px;
+	box-shadow: 2px 2px 2px #000;
+	margin: 0;
+	text-shadow: 2px 2px black
+
+}
+
+form{
+	text-align:  center;
+	display: none;
+}
+
 #main {
-  padding: 50px;
+	width: 760px;
+	margin: 50px auto 0;
+	background-color: #222;
+	box-shadow: 2px 2px 5px #000;
+	padding-bottom: 20px;
 }
 
 #playlistDND{
-  width: 200px;
-  height: 200px;
-  margin-top: 20px;
-  background-color: red;
+	width: 300px;
+	height: 300px;
+	margin: 45px auto;
+	background-color: #666;
+	box-shadow: 2px 2px 5px #000;
+	border: dotted 10px #333;
+	span{
+		text-align: center;
+		position: relative;
+		top: 50%;
+		display: block;
+		margin-top: -8px;
+	}
+
 }
+
+.dragOver{
+	background-color: #444 !important;
+	border: dotted 10px #222 !important;
+}
+
+#start, #random, #countdown{
+	display: none;
+	width: 150px;
+	padding: 10px;
+	margin: 10px auto;
+	color: white;
+	background-color: #D04;
+	box-shadow: 2px 2px 2px #000;
+	text-shadow: 2px 2px black;
+	text-align: center;
+}
+

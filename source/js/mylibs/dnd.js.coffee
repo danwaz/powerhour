@@ -11,19 +11,24 @@ $ ->
 handleDrop = (e) ->
 	e.stopPropagation()  if e.stopPropagation
 	playlist = e.originalEvent.dataTransfer.getData('text/html')
-	$(this).text($(playlist).text())
+	$('#playlistDND span').html($(playlist).text())
 	spURI = $(playlist).attr('href')
 	tracks = loadPlaylist(spURI)
 	exports.playlist = processPlaylist(tracks)
 
+	#show play game controls
+	$('#countdown, #random, #start').css('display', 'block')
+	$('form').css('display', 'block')
+
+
 handleDragEnter = (e) ->
-	#change class
-	console.log 'enter'
+	$('#playlistDND').addClass('dragOver')
+	$('#playlistDND span').html('Drop it!')
 	false
 
 handleDragLeave = (e) ->
-	#change class
-
+	$('#playlistDND').removeClass('dragOver')
+	$('#playlistDND span').html('Was that the wrong playlist? <br>Don\'t worry, I\'m not judging...')
 handleDragOver = (e) ->
 	e.preventDefault() if e.preventDefault
 
@@ -42,6 +47,7 @@ processPlaylist = (playlist) ->
 	newPlaylist = fisherYates(newPlaylist)
 	return newPlaylist
 
+#random track
 fisherYates = (arr) ->
 	i = arr.length;
 	if i == 0 then return false
@@ -54,9 +60,16 @@ fisherYates = (arr) ->
 		arr[j] = tempi
 	return arr
 
+#sidebar drag and drop
 models.application.observe models.EVENT.LINKSCHANGED, (e) ->
 	e.stopPropagation()  if e.stopPropagation
 	playlist = e.links
 	tracks = loadPlaylist(playlist[0])
-	$('#playlistDND').html(tracks.name)
+	$('#playlistDND span').html(tracks.name)
 	exports.playlist = processPlaylist(tracks)
+
+		#show play game controls
+	$('#countdown, #random, #start').css('display', 'block')
+	$('form').css('display', 'block')
+
+

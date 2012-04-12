@@ -1,29 +1,51 @@
-%h1#header
-	Whoops!  Cannot access the Spotify API!
+%h1
+	Power Hour Beta
 
 #playlistDND
-
-%img{:src => "#", :id => "albumArt"}
-
-#numLeft
 	%span
-		drinks left:
-	%h1
-		0
+		Drag in a playlist!
 
-%br
+/%img{:src => "#", :id => "albumArt"}
 
-#numToGo
-	%span
-		drinks consumed:
-	%h1
-		0
+/ #numLeft
+/ 	%span
+/ 		drinks left:
+/ 	%h1
+/ 		0
 
-%br
+/ %br
 
-#timer
-	%span
-		time to next drink:
-	%h1
-		0
+/ #numToGo
+/ 	%span
+/ 		drinks consumed:
+/ 	%h1
+/ 		0
 
+/ %br
+
+/ #timer
+/ 	%span
+/ 		time to next drink:
+/ 	%h1
+/ 		0
+
+
+
+
+
+%form{:action => '#'}
+	%label song interval
+	%select{:id => 'duration'}
+		%option{:value => 30} :30
+		%option{:value => 45} :45
+		%option{:value => 60, :selected => 'selected'} 1:00
+		%option{:value => 75} 1:15
+		%option{:value => 90} 1:30
+		%option{:value => 105} 1:45
+		%option{:value => 120} 2:00
+
+#random
+	random start times
+
+#start
+	start
