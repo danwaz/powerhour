@@ -3,9 +3,9 @@ models = sp.require("sp://import/scripts/api/models")
 player = models.player
 
 #selectors
-timer = $('#timer h1')
-numLeft = $('#numLeft h1')
-numToGo = $('#numToGo h1')
+timer = $('#timer h2')
+numLeft = $('#numLeft h2')
+numToGo = $('#numToGo h2')
 startBtn = $('#start')
 randBtn = $('#random')
 

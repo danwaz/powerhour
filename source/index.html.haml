@@ -5,34 +5,6 @@
 	%span
 		Drag in a playlist!
 
-/%img{:src => "#", :id => "albumArt"}
-
-/ #numLeft
-/ 	%span
-/ 		drinks left:
-/ 	%h1
-/ 		0
-
-/ %br
-
-/ #numToGo
-/ 	%span
-/ 		drinks consumed:
-/ 	%h1
-/ 		0
-
-/ %br
-
-/ #timer
-/ 	%span
-/ 		time to next drink:
-/ 	%h1
-/ 		0
-
-
-
-
-
 %form{:action => '#'}
 	%label song interval
 	%select{:id => 'duration'}
@@ -49,3 +21,27 @@
 
 #start
 	start
+
+	/%img{:src => "#", :id => "albumArt"}
+
+#numLeft
+	%span
+		drinks left:
+	%h2
+		0
+
+%br
+
+#numToGo
+	%span
+		drinks consumed:
+	%h2
+		0
+
+%br
+
+#timer
+	%span
+		time to next drink:
+	%h2
+		0
