@@ -5,6 +5,7 @@
 	%span
 		Drag in a playlist!
 
+
 %form{:action => '#'}
 	%label song interval
 	%select{:id => 'duration'}
@@ -17,12 +18,12 @@
 		%option{:value => 120} 2:00
 
 #random
-	random start times
+	Random Off
 
 #start
-	start
+	Start
 
-	/%img{:src => "#", :id => "albumArt"}
+#countdown
 
 #numLeft
 	%span
@@ -40,8 +41,36 @@
 
 %br
 
-#timer
+#timer2
 	%span
 		time to next drink:
 	%h2
 		0
+
+/%img{:src => "#", :id => "albumArt"}
+
+/ %h2 Size
+/ %p
+/ 	%input{:type => "button", :id => "size", :value => "Set timer to"}
+/ 	%input{:type => "text", :id => "size", :size => "2", :value => "40"}
+
+
+/ %h2 Percent
+/ %p
+/ 	%input{:type => "button", :id => "percent", :value => "Set timer to"}
+/ 	%input{:type => "text", :id => "percent", :size => "2", :value => "35"}
+
+
+/ %h2 Stop watch
+/ %p
+/ 	%input{:type => "button", :id => "watch", :value => "Start"}
+/ 	Count down from
+/ 	%input{:type => "text", :id => "watch", :size => "2", :value => "10"}
+/ 	seconds
+
+/ .timer
+/ .timer.fill
+
+
+
+

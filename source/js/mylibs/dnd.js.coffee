@@ -15,6 +15,7 @@ handleDrop = (e) ->
 	spURI = $(playlist).attr('href')
 	tracks = loadPlaylist(spURI)
 	exports.playlist = processPlaylist(tracks)
+	albumArt = getAlbumArt(exports.playlist)
 
 	#show play game controls
 	$('#countdown, #random, #start').css('display', 'block')
@@ -67,9 +68,33 @@ models.application.observe models.EVENT.LINKSCHANGED, (e) ->
 	tracks = loadPlaylist(playlist[0])
 	$('#playlistDND span').html(tracks.name)
 	exports.playlist = processPlaylist(tracks)
+	albumArt = getAlbumArt(exports.playlist)
 
 		#show play game controls
 	$('#countdown, #random, #start').css('display', 'block')
 	$('form').css('display', 'block')
+
+#get album art for mosaic
+getAlbumArt = (playlist) ->
+	$('#playlistDND > div').each ->
+		$(this).remove('div')
+	albumArt = []
+	console.log albumArt.length
+	i = 0
+	while albumArt.length < 9
+		if albumArt.indexOf(playlist[i].album.cover) == -1
+			console.log "not in the array"
+			albumArt.push(playlist[i].album.cover)
+		else
+			console.log "totally in the array"
+		i++
+	timeDelay = 0;
+	i = 0
+	for cover in albumArt
+		$('#playlistDND').append("<div id='mosaic" + i + "'><img src='" + cover + "'></div>")
+		$('#mosaic' + i + ' img').delay(timeDelay).fadeIn("slow")
+		timeDelay += 100
+		i++
+
 
 
