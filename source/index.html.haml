@@ -1,51 +1,59 @@
-%h1
-	Power Hour Beta
+#logo
+#content-container
+	#col1
+		#playlistDND
+			%span
+				Drag in a playlist!
+	#col2
 
-#playlistDND
-	%span
-		Drag in a playlist!
+/ %h1
+/ 	Power Hour Beta
+
+/ #playlistDND
+/ 	%span
+/ 		Drag in a playlist!
 
 
-%form{:action => '#'}
-	%label song interval
-	%select{:id => 'duration'}
-		%option{:value => 30} :30
-		%option{:value => 45} :45
-		%option{:value => 60, :selected => 'selected'} 1:00
-		%option{:value => 75} 1:15
-		%option{:value => 90} 1:30
-		%option{:value => 105} 1:45
-		%option{:value => 120} 2:00
+/ %form{:action => '#'}
+/ 	%label song interval
+/ 	%select{:id => 'duration'}
+/ 		%option{:value => 30} :30
+/ 		%option{:value => 45} :45
+/ 		%option{:value => 60, :selected => 'selected'} 1:00
+/ 		%option{:value => 75} 1:15
+/ 		%option{:value => 90} 1:30
+/ 		%option{:value => 105} 1:45
+/ 		%option{:value => 120} 2:00
 
-#random
-	Random Off
+/ #random
+/ 	Random Off
 
-#start
-	Start
+/ #start
+/ 	Start
 
-#countdown
+/ #countdown
 
-#numLeft
-	%span
-		drinks left:
-	%h2
-		0
+/ #numLeft
+/ 	%span
+/ 		drinks left:
+/ 	%h2
+/ 		0
 
-%br
+/ %br
 
-#numToGo
-	%span
-		drinks consumed:
-	%h2
-		0
+/ #numToGo
+/ 	%span
+/ 		drinks consumed:
+/ 	%h2
+/ 		0
 
-%br
+/ %br
 
-#timer2
-	%span
-		time to next drink:
-	%h2
-		0
+/ #timer2
+/ 	%span
+/ 		time to next drink:
+/ 	%h2
+/ 		0
 
 /%img{:src => "#", :id => "albumArt"}
 

@@ -1,148 +1,44 @@
 @import "compass";
+@include global-reset;
 @import url("sp://import/css/adam.css");
 @import url("sp://import/css/shared.css");
 
-$link-color:         #0388a6;
-$link-hover-color:   #009ce0;
-$link-focus-color:   false;
-$link-active-color:  false;
-$link-visited-color: false;
-
 $font-color:  white;
-$font-family: Lucida Grande;
-$base-font-size:   12px;
-$base-line-height: 18px;
-
-$total-cols: 12;
-$col-width: 4em;
-$gutter-width: 1em;
-$side-gutter-width: $gutter-width;
-
-@include global-reset;
+$font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
 body {
-  font-family: $font-family;
-  color: $font-color;
+	font-family: $font-family;
+	color: $font-color;
+	background: url('sp://powerhour/img/tile_bg.png') repeat top left fixed;
+	position: relative;
+	height: 100%;
+	width: 100%;
 }
 
-a {
-  @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color);
-}
-
-h1{
-	font-size: 56px;
-	text-align: center;
-	background-color: #D04;
-	padding: 10px;
-	box-shadow: 2px 2px 2px #000;
-	margin: 0;
-
-	text-shadow: 2px 2px black
-
-}
-
-form{
-	text-align:  center;
-	display: none;
-}
-
-#main {
-	width: 760px;
-	margin: 50px auto 0;
-	background-color: #222;
-	box-shadow: 2px 2px 5px #000;
-	padding-bottom: 20px;
-}
-
-#playlistDND{
-	width: 300px;
-	height: 300px;
-	margin: 45px auto;
-	background-color: #666;
-	box-shadow: 2px 2px 5px #000;
-	border: dotted 10px #333;
-	span{
-		text-align: center;
-		position: relative;
-		top: 50%;
-		display: block;
-		margin-top: -16px;
-		text-shadow: 1px 1px #000;
+#main{
+	padding-top: 72px;
+	#logo{
+		width: 206px;
+		height: 112px;
+		background: url('sp://powerhour/img/logo_main.png');
+		position: absolute;
+		top: 16px;
+		left: 50%;
+		margin-left: -103px;
 	}
-	img{
-		width: 100px;
-		height: 100px;
-		float:left;
-		display: none;
+
+	#content-container{
+		background: url('sp://powerhour/img/tile_game.png') repeat;
+		width: 100%;
+		height: 525px;
+		#col1{
+			#playlistDND{
+				width:325px;
+				height:325px;
+				border: dashed 11px black;
+				border-radius: 58px;
+			}
+		}
 	}
 
 }
-
-.dragOver{
-	background-color: #444 !important;
-	border: dotted 10px #222 !important;
-}
-
-#start, #random, #countdown{
-	display: none;
-	width: 150px;
-	padding: 10px;
-	margin: 10px auto;
-	color: white;
-	background-color: #D04;
-	box-shadow: 2px 2px 2px #000;
-	text-shadow: 2px 2px black;
-	text-align: center;
-}
-
-.timer {
-	position:relative;
-	font-size: 200px;
-	width:1em;
-	height:1em;
-	float: left;
-}
-.timer > .percent {
-	position: absolute;
-	top: 1.05em;
-	left: 0;
-	width: 3.33em;
-	font-size: 0.3em;
-	text-align:center;
-}
-.timer > #slice {
-	position:absolute;
-	width:1em;
-	height:1em;
-	clip:rect(0px,1em,1em,0.5em);
-}
-.timer > #slice.gt50 {
-	clip:rect(auto, auto, auto, auto);
-}
-.timer > #slice > .pie {
-	border: 0.1em solid #c0c0c0;
-	position:absolute;
-	width:0.8em; /* 1 - (2 * border width) */
-	height:0.8em; /* 1 - (2 * border width) */
-	clip:rect(0em,0.5em,1em,0em);
-	-moz-border-radius:0.5em;
-	-webkit-border-radius:0.5em;
-	border-radius:0.5em;
-}
-.timer > #slice > .pie.fill {
-	-moz-transform:rotate(180deg) !important;
-	-webkit-transform:rotate(180deg) !important;
-	-o-transform:rotate(180deg) !important;
-	transform:rotate(180deg) !important;
-}
-.timer.fill > .percent {
-	display: none;
-}
-.timer.fill > #slice > .pie {
-	border: transparent;
-	background-color: #c0c0c0;
-	width:1em;
-	height:1em;
-}
-
-
