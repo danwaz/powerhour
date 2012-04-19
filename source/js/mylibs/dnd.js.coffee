@@ -11,25 +11,26 @@ $ ->
 handleDrop = (e) ->
 	e.stopPropagation()  if e.stopPropagation
 	playlist = e.originalEvent.dataTransfer.getData('text/html')
-	$('#playlistDND span').html($(playlist).text())
+	$('#playlistDND span').remove()
+	$('#currentPlaylist').html($(playlist).text())
 	spURI = $(playlist).attr('href')
 	tracks = loadPlaylist(spURI)
 	exports.playlist = processPlaylist(tracks)
 	albumArt = getAlbumArt(exports.playlist)
 
 	#show play game controls
-	$('#countdown, #random, #start').css('display', 'block')
-	$('form').css('display', 'block')
+	#$('#countdown, #random, #start').css('display', 'block')
+	#$('form').css('display', 'block')
 
 
 handleDragEnter = (e) ->
 	$('#playlistDND').addClass('dragOver')
-	$('#playlistDND span').html('Drop it!')
+	$('#playlistDND span').html('Drop her in!')
 	false
 
 handleDragLeave = (e) ->
 	$('#playlistDND').removeClass('dragOver')
-	$('#playlistDND span').html('Was that the wrong playlist? <br>Don\'t worry, I\'m not judging...')
+	$('#playlistDND span').html('Drag and drop a &nbsp;playlist here')
 handleDragOver = (e) ->
 	e.preventDefault() if e.preventDefault
 

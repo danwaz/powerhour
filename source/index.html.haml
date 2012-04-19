@@ -1,83 +1,41 @@
 #logo
 #content-container
-	#col1
-		#playlistDND
-			%span
-				Drag in a playlist!
-	#col2
+	#power-area
+		#col1
+			#playlistDND
+				%span Drag and drop a &nbsp;playlist here
+		#col2
+			#playlist Playlist:
+			#currentPlaylist none
+			%form{:action => '#'}
+				%label Random:
+				%select{:id => 'random'}
+					%option{:value => 'on'} on
+					%option{:value => 'off'}  off
+				%label # Of Songs
+				%select{:id => 'numSongs'}
+					%option{:value => 10} 10
+					%option{:value => 20} 20
+					%option{:value => 30} 30
+					%option{:value => 40} 40
+					%option{:value => 50} 50
+					%option{:value => 60} 60
+					%option{:value => 70} 70
+					%option{:value => 80} 80
+					%option{:value => 90} 90
+					%option{:value => 100} 100
+				%label Song Interval
+				%select{:id => 'duration'}
+					%option{:value => 30} :30
+					%option{:value => 45} :45
+					%option{:value => 60, :selected => 'selected'} 1:00
+					%option{:value => 75} 1:15
+					%option{:value => 90} 1:30
+					%option{:value => 105} 1:45
+					%option{:value => 120} 2:00
 
-/ %h1
-/ 	Power Hour Beta
+			#start Start
 
-/ #playlistDND
-/ 	%span
-/ 		Drag in a playlist!
-
-
-/ %form{:action => '#'}
-/ 	%label song interval
-/ 	%select{:id => 'duration'}
-/ 		%option{:value => 30} :30
-/ 		%option{:value => 45} :45
-/ 		%option{:value => 60, :selected => 'selected'} 1:00
-/ 		%option{:value => 75} 1:15
-/ 		%option{:value => 90} 1:30
-/ 		%option{:value => 105} 1:45
-/ 		%option{:value => 120} 2:00
-
-/ #random
-/ 	Random Off
-
-/ #start
-/ 	Start
-
-/ #countdown
-
-/ #numLeft
-/ 	%span
-/ 		drinks left:
-/ 	%h2
-/ 		0
-
-/ %br
-
-/ #numToGo
-/ 	%span
-/ 		drinks consumed:
-/ 	%h2
-/ 		0
-
-/ %br
-
-/ #timer2
-/ 	%span
-/ 		time to next drink:
-/ 	%h2
-/ 		0
-
-/%img{:src => "#", :id => "albumArt"}
-
-/ %h2 Size
-/ %p
-/ 	%input{:type => "button", :id => "size", :value => "Set timer to"}
-/ 	%input{:type => "text", :id => "size", :size => "2", :value => "40"}
-
-
-/ %h2 Percent
-/ %p
-/ 	%input{:type => "button", :id => "percent", :value => "Set timer to"}
-/ 	%input{:type => "text", :id => "percent", :size => "2", :value => "35"}
-
-
-/ %h2 Stop watch
-/ %p
-/ 	%input{:type => "button", :id => "watch", :value => "Start"}
-/ 	Count down from
-/ 	%input{:type => "text", :id => "watch", :size => "2", :value => "10"}
-/ 	seconds
-
-/ .timer
-/ .timer.fill
 
 
 

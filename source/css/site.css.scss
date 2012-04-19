@@ -4,6 +4,7 @@
 @import url("sp://import/css/shared.css");
 
 $font-color:  white;
+$powerblue: #54fffe;
 $font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
 body {
@@ -30,13 +31,59 @@ body {
 	#content-container{
 		background: url('sp://powerhour/img/tile_game.png') repeat;
 		width: 100%;
-		height: 525px;
-		#col1{
-			#playlistDND{
-				width:325px;
-				height:325px;
-				border: dashed 11px black;
-				border-radius: 58px;
+		height: 535px;
+		#power-area{
+			width: 860px;
+			margin: 0 auto;
+			padding-top: 115px;
+			span{
+				font-weight: bold;
+				text-align: center;
+				font-size: 24px;
+				color: black;
+				display: block;
+				width: 180px;
+				line-height: 30px;
+				margin: -30px auto 0;
+				position: relative;
+				top: 50%;
+			}
+			#col1{
+				float: left;
+				#playlistDND{
+					width:312px;
+					height:312px;
+					border: dashed 11px black;
+					border-radius: 58px;
+					img{
+						width:104px;
+						height:104px;
+						float:left;
+						display: none;
+					}
+					#mosaic0 img {border-radius: 47px 0 0 0;}
+					#mosaic2 img {border-radius: 0 47px 0 0;}
+					#mosaic6 img {border-radius: 0 0 0 47px;}
+					#mosaic8 img {border-radius: 0 0 47px 0;}
+
+				}
+				.dragOver{
+					background-color: rgba(0,0,0, .1);
+				}
+			}
+			#col2{
+				float: right;
+				#playlist{
+					font-size: 20px;
+					font-weight: bold;
+					color: $powerblue;
+				}
+				#currentPlaylist{
+					font-size: 34px;
+					font-weight: bold;
+					color: white;
+					display: block;
+				}
 			}
 		}
 	}
