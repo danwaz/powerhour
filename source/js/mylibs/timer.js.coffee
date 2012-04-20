@@ -1,4 +1,5 @@
 #declare player
+sp = getSpotifyApi(1)
 models = sp.require("sp://import/scripts/api/models")
 player = models.player
 
@@ -32,7 +33,7 @@ startGame = () ->
 		countdown = setTimeout ->
 			gamePlaying = true
 			player.playing = true
-			nextTrack(exports.playlist, currIndex, isRandom)
+			nextTrack(window.playlist, currIndex, isRandom)
 		, 3000
 	else
 		gamePlaying = false
@@ -71,7 +72,7 @@ doInterval = (playing)->
 		else
 			count = startTime
 			updateProgress()
-			nextTrack(exports.playlist, currIndex, isRandom)
+			nextTrack(window.playlist, currIndex, isRandom)
 	, 1000
 
 player.observe models.EVENT.CHANGE, (e) ->

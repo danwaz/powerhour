@@ -1,3 +1,4 @@
+sp = getSpotifyApi(1)
 models = sp.require("sp://import/scripts/api/models")
 player = models.player
 
@@ -15,8 +16,9 @@ handleDrop = (e) ->
 	$('#currentPlaylist').html($(playlist).text())
 	spURI = $(playlist).attr('href')
 	tracks = loadPlaylist(spURI)
-	exports.playlist = processPlaylist(tracks)
-	albumArt = getAlbumArt(exports.playlist)
+	window.playlist = processPlaylist(tracks)
+	albumArt = getAlbumArt(window.playlist)
+
 
 	#show play game controls
 	#$('#countdown, #random, #start').css('display', 'block')
@@ -68,8 +70,8 @@ models.application.observe models.EVENT.LINKSCHANGED, (e) ->
 	playlist = e.links
 	tracks = loadPlaylist(playlist[0])
 	$('#playlistDND span').html(tracks.name)
-	exports.playlist = processPlaylist(tracks)
-	albumArt = getAlbumArt(exports.playlist)
+	window.playlist = processPlaylist(tracks)
+	albumArt = getAlbumArt(window.playlist)
 
 		#show play game controls
 	$('#countdown, #random, #start').css('display', 'block')

@@ -1,7 +1,6 @@
-#= require libs/jquery-1.7.1
-#= require mylibs/dnd
-#= require mylibs/timer
-
+sp = getSpotifyApi(1)
+models = sp.require("sp://import/scripts/api/models")
+player = models.player
 
 init = ->
 	updatePageWithTrackDetails()
@@ -18,8 +17,5 @@ updatePageWithTrackDetails = ->
 		$(header).html track.name + " <br /> " + track.album.name + "<br />By: " + track.album.artist.name
 		$("#albumArt").attr("src", models.player.track.album.data.cover)
 
-sp = getSpotifyApi(1)
-models = sp.require("sp://import/scripts/api/models")
-player = models.player
-exports.init = init
+
 

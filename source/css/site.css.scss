@@ -1,7 +1,7 @@
 @import "compass";
 @include global-reset;
 @import url("sp://import/css/adam.css");
-@import url("sp://import/css/shared.css");
+@import url("dropkick.css");
 
 $font-color:  white;
 $powerblue: #54fffe;
@@ -14,6 +14,8 @@ body {
 	position: relative;
 	height: 100%;
 	width: 100%;
+	overflow-x: hidden;
+
 }
 
 #main{
@@ -35,19 +37,7 @@ body {
 		#power-area{
 			width: 860px;
 			margin: 0 auto;
-			padding-top: 115px;
-			span{
-				font-weight: bold;
-				text-align: center;
-				font-size: 24px;
-				color: black;
-				display: block;
-				width: 180px;
-				line-height: 30px;
-				margin: -30px auto 0;
-				position: relative;
-				top: 50%;
-			}
+			padding: 115px 70px 0;
 			#col1{
 				float: left;
 				#playlistDND{
@@ -55,6 +45,18 @@ body {
 					height:312px;
 					border: dashed 11px black;
 					border-radius: 58px;
+					span{
+						font-weight: bold;
+						text-align: center;
+						font-size: 24px;
+						color: black;
+						display: block;
+						width: 180px;
+						line-height: 30px;
+						margin: -30px auto 0;
+						position: relative;
+						top: 50%;
+					}
 					img{
 						width:104px;
 						height:104px;
