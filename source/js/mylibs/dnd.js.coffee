@@ -1,13 +1,17 @@
-sp = getSpotifyApi(1)
-models = sp.require("sp://import/scripts/api/models")
-player = models.player
-
 $ ->
 	dropzone = $('#playlistDND')
 	dropzone.on('dragenter', handleDragEnter)
 	dropzone.on('dragleave', handleDragLeave)
 	dropzone.on('dragover', handleDragOver)
 	dropzone.on('drop', handleDrop)
+
+	models.application.observe models.EVENT.LINKSCHANGED, (e) ->
+		e.stopPropagation()  if e.stopPropagation
+		playlist = e.links
+		tracks = loadPlaylist(playlist[0])
+		$('#playlistDND span').html(tracks.name)
+		window.playlist = processPlaylist(tracks)
+		albumArt = getAlbumArt(window.playlist)
 
 handleDrop = (e) ->
 	e.stopPropagation()  if e.stopPropagation
@@ -18,12 +22,6 @@ handleDrop = (e) ->
 	tracks = loadPlaylist(spURI)
 	window.playlist = processPlaylist(tracks)
 	albumArt = getAlbumArt(window.playlist)
-
-
-	#show play game controls
-	#$('#countdown, #random, #start').css('display', 'block')
-	#$('form').css('display', 'block')
-
 
 handleDragEnter = (e) ->
 	$('#playlistDND').addClass('dragOver')
@@ -63,19 +61,6 @@ fisherYates = (arr) ->
 		arr[i] = tempj
 		arr[j] = tempi
 	return arr
-
-#sidebar drag and drop
-models.application.observe models.EVENT.LINKSCHANGED, (e) ->
-	e.stopPropagation()  if e.stopPropagation
-	playlist = e.links
-	tracks = loadPlaylist(playlist[0])
-	$('#playlistDND span').html(tracks.name)
-	window.playlist = processPlaylist(tracks)
-	albumArt = getAlbumArt(window.playlist)
-
-		#show play game controls
-	$('#countdown, #random, #start').css('display', 'block')
-	$('form').css('display', 'block')
 
 #get album art for mosaic
 getAlbumArt = (playlist) ->
