@@ -1,9 +1,14 @@
 @import "compass";
 @include global-reset;
 @import url("sp://import/css/adam.css");
+@import url("bootstrap.css");
 
-$font-color:  white;
+//colors
+$font-color: white;
 $powerblue: #54fffe;
+$black: #101010;
+
+//fonts
 $font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
 body {
@@ -38,6 +43,7 @@ body {
 			margin: 0 auto;
 			padding: 115px 70px 0;
 			#col1{
+				width: 430px;
 				float: left;
 				#playlistDND{
 					width:312px;
@@ -73,6 +79,7 @@ body {
 				}
 			}
 			#col2{
+				width:430px;
 				float: right;
 				#playlist{
 					font-size: 20px;
