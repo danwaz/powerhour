@@ -9,7 +9,7 @@ $powerblue: #54fffe;
 $black: #101010;
 
 //fonts
-$font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
 body {
 	font-family: $font-family;
@@ -91,6 +91,9 @@ body {
 					font-weight: bold;
 					color: white;
 					display: block;
+				}
+				#settings{
+					margin-top:45px;
 				}
 			}
 		}

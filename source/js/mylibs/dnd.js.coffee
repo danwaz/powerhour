@@ -9,6 +9,7 @@ $ ->
 		e.stopPropagation()  if e.stopPropagation
 		playlist = e.links
 		tracks = loadPlaylist(playlist[0])
+		$('#playlistDND span').remove()
 		$('#playlistDND span').html(tracks.name)
 		window.playlist = processPlaylist(tracks)
 		albumArt = getAlbumArt(window.playlist)
@@ -25,7 +26,7 @@ handleDrop = (e) ->
 
 handleDragEnter = (e) ->
 	$('#playlistDND').addClass('dragOver')
-	$('#playlistDND span').html('Drop her in!')
+	$('#playlistDND span').html('Drop!')
 	false
 
 handleDragLeave = (e) ->
@@ -67,15 +68,19 @@ getAlbumArt = (playlist) ->
 	$('#playlistDND > div').each ->
 		$(this).remove('div')
 	albumArt = []
-	console.log albumArt.length
+	console.log albumArt
 	i = 0
 	while albumArt.length < 9
-		if albumArt.indexOf(playlist[i].album.cover) == -1
+		#check to see if we have any items left
+		if playlist[i] == undefined
+			break
+
+		if albumArt.indexOf(playlist[i].album.cover) == -1 && playlist[i].album.cover != ""
 			console.log "not in the array"
 			albumArt.push(playlist[i].album.cover)
 		else
 			console.log "totally in the array"
-		i++
+			i++
 	timeDelay = 0;
 	i = 0
 	for cover in albumArt

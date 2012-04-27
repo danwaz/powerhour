@@ -1,9 +1,10 @@
 #progress vars
-numLeftCount = 60
+totalSongs = 60
+numLeftCount = totalSongs
 numToGoCount = 0
 
 #timer vars
-startTime = 2
+startTime = 60
 count = startTime
 t = 0
 currIndex = 0
@@ -15,6 +16,9 @@ $ ->
 	console.log('hey guy')
 	startBtn = $('#start')
 	startBtn.on('click', startGame)
+	$('#random > li > a').on('click', selectRandom)
+	$('#numSongs > li > a').on('click', selectSongs)
+	$('#interval > li > a').on('click', selectInterval)
 
 	models.player.observe models.EVENT.CHANGE, (e) ->
 		console.log 'lets go!'
@@ -38,13 +42,32 @@ startGame = () ->
 		gamePlaying = false
 
 
-toggleRandom = () ->
-	if isRandom == false
+selectRandom = () ->
+	val = $(this).text()
+	$(this).parents('.btn-group').find('.btn-text').text(val)
+
+	if val == "On"
 		isRandom = true
-		$('#random').html('Random On')
 	else
 		isRandom = false
-		$('#random').html('Random Off')
+
+selectSongs = () ->
+	val = $(this).text()
+	val = parseInt(val)
+	$(this).parents('.btn-group').find('.btn-text').text(val)
+
+	totalSongs = val
+	numLeftCount = totalSongs
+
+
+
+selectInterval = () ->
+	val = $(this).text()
+	val = parseInt(val)
+	$(this).parents('.btn-group').find('.btn-text').text(val + 's')
+
+	startTime = val
+	count = startTime
 
 doInterval = (playing)->
 	window.clearInterval t

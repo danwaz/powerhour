@@ -16,7 +16,6 @@ $ ->
 
 	#close menu
 	$('.dropdown-toggle').parent().find('a').on 'click', ->
-		console.log(this)
 		$(this).parents('ul').slideUp('fast')
 		$('.btn-group').removeClass('dropToggle')
 

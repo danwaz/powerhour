@@ -11,36 +11,53 @@
 			#settings
 				.btn-group
 					%button{:class => "btn btn-inverse btn-large"}
-						Random:
-						%button{:class => "btn btn-inverse dropdown-toggle btn-large", "data-toggle" => "dropdown"}
-							%span{:class => "caret"}
-					%ul{:class => "dropdown-menu"}
-						%li
-							%a On
+						%span Random:
+						%span{:class => 'btn-text'} On
+					%button{:class => "btn btn-inverse dropdown-toggle btn-large", "data-toggle" => "dropdown"}
+						%span{:class => "caret"}
+					%ul{:id => "random", :class => "dropdown-menu"}
 						%li
 							%a Off
+						%li
+							%a On
 
 				.btn-group
 					%button{:class => "btn btn-inverse btn-large"}
-						\# of Songs
-						%button{:class => "btn btn-inverse dropdown-toggle btn-large", "data-toggle" => "dropdown"}
-							%span{:class => "caret"}
-					%ul{:class => "dropdown-menu"}
+						%span Songs:
+						%span{:class => 'btn-text'} 60
+					%button{:class => "btn btn-inverse dropdown-toggle btn-large", "data-toggle" => "dropdown"}
+						%span{:class => "caret"}
+					%ul{:id => "numSongs", :class => "dropdown-menu"}
 						%li
-							%a On
+							%a 5
 						%li
-							%a Off
+							%a 15
+						%li
+							%a 30
+						%li
+							%a 60
+						%li
+							%a 100
 
 				.btn-group
 					%button{:class => "btn btn-inverse btn-large"}
-						Song Interval
-						%button{:class => "btn btn-inverse dropdown-toggle btn-large", "data-toggle" => "dropdown"}
-							%span{:class => "caret"}
+						%span Interval:
+						%span{:class => 'btn-text'} 60s
+					%button{:class => "btn btn-inverse dropdown-toggle btn-large", "data-toggle" => "dropdown"}
+						%span{:class => "caret"}
 
-					%ul{:class => "dropdown-menu"}
+					%ul{:id => "interval", :class => "dropdown-menu"}
 						%li
-							%a On
+							%a 5s
 						%li
-							%a Off
+							%a 15s
+						%li
+							%a 30s
+						%li
+							%a 60s
+						%li
+							%a 90s
+						%li
+							%a 120s
 
 				#start Start
