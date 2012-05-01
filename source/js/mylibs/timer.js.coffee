@@ -10,7 +10,7 @@ t = 0
 currIndex = 0
 isRandom = true
 gamePlaying = false
-
+timer = null
 
 $ ->
 	console.log('hey guy')
@@ -21,23 +21,26 @@ $ ->
 	$('#interval > li > a').on('click', selectInterval)
 
 	models.player.observe models.EVENT.CHANGE, (e) ->
-		console.log 'lets go!'
-		if gamePlaying == true
-			isPlaying = models.player.playing
-			if isPlaying == true
-				doInterval(isPlaying)
-			else
-				window.clearInterval t
+		updatePageWithTrackDetails() if e.data.curtrack is true
+
+updatePageWithTrackDetails = () ->
+	playerTrackInfo = models.player.track
+	track = playerTrackInfo.data
+	$("#albumArt img").attr("src", models.player.track.album.data.cover)
+	$('#track').html track.name
+	$('#artist').html("by " + track.album.artist.name)
 
 startGame = () ->
-	console.log gamePlaying
-	if gamePlaying == false
+	if !$('#start').hasClass('inactive')
 		models.player.playing = false
+		$('#playlistDND, #playlist, #currentPlaylist, #settings').fadeOut(300)
+		$('#trackInfo, #timer').delay(500).fadeIn(500)
 		countdown = setTimeout ->
 			gamePlaying = true
 			models.player.playing = true
 			nextTrack(window.playlist, currIndex, isRandom)
-		, 3000
+			createCanvas()
+		, 1000
 	else
 		gamePlaying = false
 
@@ -59,8 +62,6 @@ selectSongs = () ->
 	totalSongs = val
 	numLeftCount = totalSongs
 
-
-
 selectInterval = () ->
 	val = $(this).text()
 	val = parseInt(val)
@@ -68,17 +69,6 @@ selectInterval = () ->
 
 	startTime = val
 	count = startTime
-
-doInterval = (playing)->
-	window.clearInterval t
-	t = window.setInterval ->
-		if count > 1
-			count--
-		else
-			count = startTime
-			updateProgress()
-			nextTrack(window.playlist, currIndex, isRandom)
-	, 1000
 
 updateProgress = ->
 	numLeftCount--
@@ -93,3 +83,60 @@ nextTrack = (playlist, index, random) ->
 		models.player.playTrack(playlist[index].uri + "#" + min + ":"+ sec)
 	else
 		models.player.playTrack(playlist[index].uri)
+
+createCanvas = () ->
+	canvas = $('#timer-canvas')
+	if canvas[0].getContext
+		ctx = canvas[0].getContext('2d')
+		start = (3 * Math.PI) / 2
+		center = 200
+		radius = 117
+		degrees = 359
+		seconds = count
+		total = 359
+		countdown = count
+		timestamp = new Date().getTime()
+		$('#minLeft').html(numLeftCount + " songs left")
+
+		timer = window.setInterval ->
+			if degrees >= 0
+				draw(ctx, start, center, radius, degrees, total)
+				degrees -= (360/seconds)/24
+				total -= (360/(seconds*totalSongs))/24
+				countdown =  Math.ceil(count - Math.abs((timestamp/1000) - (new Date().getTime()/1000)))
+				if countdown < 10
+					$('#countdown').html('<span>0</span>' + countdown)
+				else
+					$('#countdown').html(countdown)
+			else
+				degrees = 359;
+				countdown = count
+				timestamp = new Date().getTime()
+				$('#minLeft').html(numLeftCount + " songs left")
+				updateProgress()
+				nextTrack(window.playlist, currIndex, isRandom)
+		,40
+
+
+draw = (ctx, start, center, radius, degrees, total) ->
+	#pie circle
+	ctx.clearRect(0,0,400, 400)
+
+	ctx.strokeStyle = "#54fffe"
+	ctx.fillStyle = "#3d6868"
+	ctx.beginPath()
+	ctx.arc(center,center, radius, 0, 360, false)
+	ctx.closePath()
+	ctx.fill()
+
+	ctx.fillStyle = "#479d9c"
+	ctx.beginPath()
+	ctx.arc(center, center, radius, start, start - (Math.PI/180) * degrees, false)
+	ctx.lineTo(center, center)
+	ctx.closePath()
+	ctx.fill()
+
+	ctx.beginPath()
+	ctx.lineWidth = 40
+	ctx.arc(center, center, radius+35, start, start - (Math.PI/180) * total, false)
+	ctx.stroke()

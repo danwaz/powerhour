@@ -7,6 +7,9 @@
 $font-color: white;
 $powerblue: #54fffe;
 $black: #101010;
+$red-start: #d91920;
+$red-end: #c3161d;
+$minLeft-red: #f5233a;
 
 //fonts
 $font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -43,28 +46,23 @@ body {
 			margin: 0 auto;
 			padding: 115px 70px 0;
 			#col1{
-				width: 430px;
+				width: 400px;
 				float: left;
 				#playlistDND{
-					width:312px;
-					height:312px;
+					width:301px;
+					height:301px;
 					border: dashed 11px black;
 					border-radius: 58px;
-					span{
-						font-weight: bold;
-						text-align: center;
-						font-size: 24px;
-						color: black;
-						display: block;
-						width: 180px;
-						line-height: 30px;
-						margin: -30px auto 0;
-						position: relative;
-						top: 50%;
-					}
+					margin-left: 65px;
+					font-weight: bold;
+					text-align: center;
+					font-size: 18px;
+					color: black;
+					line-height: 301px;
+
 					img{
-						width:104px;
-						height:104px;
+						width:100px;
+						height:100px;
 						float:left;
 						display: none;
 					}
@@ -77,9 +75,13 @@ body {
 				.dragOver{
 					background-color: rgba(0,0,0, .1);
 				}
+
+				#trackInfo{
+					display: none;
+				}
 			}
 			#col2{
-				width:430px;
+				width:400px;
 				float: right;
 				#playlist{
 					font-size: 20px;
@@ -95,8 +97,64 @@ body {
 				#settings{
 					margin-top:45px;
 				}
+
+				#timer{
+					display: none;
+					position:relative;
+
+					#countdown-container{
+						position:absolute;
+						top: 125px;
+						left: 128px;
+
+						#countdown{
+							font-size: 128px;
+							font-weight: bold;
+						}
+
+						#countdown-copy{
+							width: 147px;
+							font-size: 20px;
+							text-align: center;
+							position: relative;
+							bottom: 4px;
+						}
+					}
+					#minLeft{
+						background: $minLeft-red;
+						width: 198px;
+						height: 44px;
+						border-radius: 15px;
+						text-align: center;
+						font-size: 20px;
+						line-height: 44px;
+						margin: 0 auto;
+						position: relative;
+						bottom: 20px;
+					}
+				}
 			}
 		}
 	}
+
+.red-btn{
+	width: 102px;
+	height: 39px;
+	background: -webkit-linear-gradient(top, $red-start 0%, $red-end 100%);
+	padding: 0px 17px;
+	font-size: 20px;
+	border-radius: 6px;
+	line-height: 40px;
+	margin-top: 41px;
+	box-shadow: 1px 5px rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+
+.red-btn.inactive{
+	cursor: not-allowed;
+	opacity: .25;
+}
+
+
 
 }

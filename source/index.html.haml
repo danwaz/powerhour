@@ -3,7 +3,14 @@
 	#power-area
 		#col1
 			#playlistDND
-				%span Drag and drop a playlist here
+				Drag and drop a playlist here
+			#trackInfo
+				#albumArt
+					%img{:src => ""}
+				#nowPlaying
+					Now Playing
+				#track
+				#artist
 		#col2
 			#playlist Playlist:
 			#currentPlaylist none
@@ -57,7 +64,13 @@
 							%a 60s
 						%li
 							%a 90s
-						%li
-							%a 120s
 
-				#start Start
+				#start.red-btn.inactive	 Let's Party!
+
+			#timer
+				%canvas{:id => "timer-canvas", :height => 400, :width => 400}
+				#countdown-container
+					#countdown
+					#countdown-copy
+						Seconds until next song
+				#minLeft

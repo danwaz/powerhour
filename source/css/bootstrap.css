@@ -47,6 +47,10 @@
   -webkit-border-radius: 4px;
   cursor: pointer;
 }
+
+.btn span:first-child{
+  margin-left: 3px;
+}
 .btn:hover,
 .btn:active,
 .btn.active,
@@ -289,17 +293,16 @@ input[type="submit"].btn.btn-mini {
   z-index: 1000;
   float: left;
   display: none;
-  min-width: 193px;
+  min-width: 201px;
   padding: 4px 0;
   margin: 0;
   list-style: none;
-  background-color: #ffffff;
+  background-color: rgba(20, 20, 20, 1);
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
   border-width: 1px;
   -webkit-border-radius: 0 0 5px 5px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -webkit-background-clip: padding-box;
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -316,10 +319,10 @@ input[type="submit"].btn.btn-mini {
 }
 .dropdown-menu a {
   display: block;
-  padding: 3px 15px;
+  padding: 3px 16px;
   clear: both;
   line-height: 18px;
-  color: #333333;
+  color: #FFF;
   white-space: nowrap;
 }
 .dropdown-menu li > a:hover,
@@ -327,7 +330,7 @@ input[type="submit"].btn.btn-mini {
 .dropdown-menu .active > a:hover {
   color: #ffffff;
   text-decoration: none;
-  background-color: #0088cc;
+  background-color: #c3161d;
 }
 .dropdown.open {
   *z-index: 1000;

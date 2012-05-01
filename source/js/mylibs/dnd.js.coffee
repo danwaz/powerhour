@@ -1,5 +1,5 @@
 $ ->
-	dropzone = $('#playlistDND')
+	dropzone = $('#playlistDND, #playlistDND span')
 	dropzone.on('dragenter', handleDragEnter)
 	dropzone.on('dragleave', handleDragLeave)
 	dropzone.on('dragover', handleDragOver)
@@ -9,29 +9,32 @@ $ ->
 		e.stopPropagation()  if e.stopPropagation
 		playlist = e.links
 		tracks = loadPlaylist(playlist[0])
-		$('#playlistDND span').remove()
-		$('#playlistDND span').html(tracks.name)
+		$('#playlistDND').empty().css('line-height', 0)
+		$('#playlistDND').html(tracks.name)
 		window.playlist = processPlaylist(tracks)
 		albumArt = getAlbumArt(window.playlist)
 
 handleDrop = (e) ->
 	e.stopPropagation()  if e.stopPropagation
 	playlist = e.originalEvent.dataTransfer.getData('text/html')
-	$('#playlistDND span').remove()
+	$('#playlistDND').empty().css('line-height', 0)
 	$('#currentPlaylist').html($(playlist).text())
+	$('#start').removeClass('inactive')
 	spURI = $(playlist).attr('href')
 	tracks = loadPlaylist(spURI)
 	window.playlist = processPlaylist(tracks)
 	albumArt = getAlbumArt(window.playlist)
 
 handleDragEnter = (e) ->
-	$('#playlistDND').addClass('dragOver')
-	$('#playlistDND span').html('Drop!')
-	false
+	unless document.getElementById('mosaic0')
+		$('#playlistDND').addClass('dragOver')
+		$('#playlistDND').html('Drop!')
+		false
 
 handleDragLeave = (e) ->
-	$('#playlistDND').removeClass('dragOver')
-	$('#playlistDND span').html('Drag and drop a &nbsp;playlist here')
+	unless document.getElementById('mosaic0')
+		$('#playlistDND').removeClass('dragOver')
+		$('#playlistDND').html('Drag and drop a playlist here')
 handleDragOver = (e) ->
 	e.preventDefault() if e.preventDefault
 
