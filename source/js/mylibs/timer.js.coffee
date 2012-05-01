@@ -112,8 +112,8 @@ createCanvas = () ->
 				degrees = 359;
 				countdown = count
 				timestamp = new Date().getTime()
-				$('#minLeft').html(numLeftCount + " songs left")
 				updateProgress()
+				$('#minLeft').html(numLeftCount + " songs left")
 				nextTrack(window.playlist, currIndex, isRandom)
 		,40
 
