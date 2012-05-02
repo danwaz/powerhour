@@ -11,6 +11,8 @@ currIndex = 0
 isRandom = true
 gamePlaying = false
 timer = null
+paused = null
+isPaused = false
 
 $ ->
 	console.log('hey guy')
@@ -29,12 +31,27 @@ updatePageWithTrackDetails = () ->
 	$("#albumArt img").attr("src", models.player.track.album.data.cover)
 	$('#track').html track.name
 	$('#artist').html("by " + track.album.artist.name)
+	updatePlayQueue()
+
+updatePlayQueue = () ->
+	playlist = window.playlist
+	index = currIndex
+	i = 1
+	$('.nextQueue').remove()
+	while (i <= 10)
+		trackNum = "<div class='nextNum'>" + i + ":&nbsp;</div>"
+		trackName =  "<div class='nextTrack'>" + playlist[index+i].name + "</div>"
+		artist = "<div class='nextArtist'>&nbsp;by&nbsp;" + playlist[index+i].artists[0].name + "</div>"
+		$('#queue').append("<div class='nextQueue'>" + trackNum + trackName + artist + "</div>")
+		i++
+
 
 startGame = () ->
 	if !$('#start').hasClass('inactive')
 		models.player.playing = false
 		$('#playlistDND, #playlist, #currentPlaylist, #settings').fadeOut(300)
-		$('#trackInfo, #timer').delay(500).fadeIn(500)
+		$('#trackInfo, #timer-container').delay(500).fadeIn(500)
+		$('#queue').slideDown(500)
 		countdown = setTimeout ->
 			gamePlaying = true
 			models.player.playing = true
@@ -89,7 +106,7 @@ createCanvas = () ->
 	if canvas[0].getContext
 		ctx = canvas[0].getContext('2d')
 		start = (3 * Math.PI) / 2
-		center = 200
+		center = 175
 		radius = 117
 		degrees = 359
 		seconds = count
@@ -108,6 +125,13 @@ createCanvas = () ->
 					$('#countdown').html('<span>0</span>' + countdown)
 				else
 					$('#countdown').html(countdown)
+				if isPaused == true
+					paused = window.setInterval ->
+						if isPaused == true
+							console.log "we are paused"
+						else
+							window.clearInterval(paused)
+					, 40
 			else
 				degrees = 359;
 				countdown = count
@@ -137,6 +161,6 @@ draw = (ctx, start, center, radius, degrees, total) ->
 	ctx.fill()
 
 	ctx.beginPath()
-	ctx.lineWidth = 40
-	ctx.arc(center, center, radius+35, start, start - (Math.PI/180) * total, false)
+	ctx.lineWidth = 37
+	ctx.arc(center, center, radius+30, start, start - (Math.PI/180) * total, false)
 	ctx.stroke()
