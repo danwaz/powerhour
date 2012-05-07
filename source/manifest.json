@@ -3,6 +3,7 @@
         "playlist"
     ],
     "BundleType": "Application",
+    "BundleIdentifier": "powerhour",
     "AppIcon": {
         "36x18": "tutorial.png"
     },
