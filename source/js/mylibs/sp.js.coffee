@@ -1,6 +1,8 @@
-$ ->
-	sp = getSpotifyApi(1)
-	models = sp.require("sp://import/scripts/api/models")
+#global namespace
+powerhour = this
 
-	window.sp = sp
-	window.models = models
+sp = getSpotifyApi(1)
+models = sp.require("sp://import/scripts/api/models")
+
+powerhour.sp = sp
+powerhour.models = models

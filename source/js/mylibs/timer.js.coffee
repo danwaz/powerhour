@@ -1,3 +1,5 @@
+
+
 #progress vars
 totalSongs = 60
 numLeftCount = totalSongs
@@ -15,7 +17,6 @@ paused = null
 isPaused = false
 
 $ ->
-	console.log('hey guy')
 	startBtn = $('#start')
 	startBtn.on('click', startGame)
 	$('#random > li > a').on('click', selectRandom)
@@ -24,14 +25,43 @@ $ ->
 
 	models.player.observe models.EVENT.CHANGE, (e) ->
 		updatePageWithTrackDetails() if e.data.curtrack is true
+		if models.player.playing == false
+			isPaused = true
+		else
+			isPaused = false
 
 updatePageWithTrackDetails = () ->
+	albumCrossfade()
 	playerTrackInfo = models.player.track
 	track = playerTrackInfo.data
-	$("#albumArt img").attr("src", models.player.track.album.data.cover)
 	$('#track').html track.name
 	$('#artist').html("by " + track.album.artist.name)
 	updatePlayQueue()
+
+setAlbumArt = () ->
+	playlist = window.playlist
+	index = currIndex
+	ids = $('.albumArt')
+	for album in ids
+		if $(album).hasClass('playing')
+			$(album).find('img').attr('src', playlist[index].album.cover)
+		else
+			$(album).find('img').attr('src', playlist[index-1].album.cover)
+
+albumCrossfade = () ->
+	ids = $('.albumArt')
+	for album in ids
+		if $(album).hasClass('playing')
+			$(album).fadeOut('slow')
+			$(album).removeClass('playing')
+		else
+			$(album).fadeIn('slow')
+			$(album).addClass('playing')
+	setAlbumArt()
+
+
+
+
 
 updatePlayQueue = () ->
 	playlist = window.playlist
@@ -87,7 +117,7 @@ selectInterval = () ->
 	startTime = val
 	count = startTime
 
-updateProgress = ->
+updateProgress = () ->
 	numLeftCount--
 	numToGoCount++
 	currIndex++
@@ -114,13 +144,10 @@ createCanvas = () ->
 		countdown = count
 		timestamp = new Date().getTime()
 		$('#minLeft').html(numLeftCount + " songs left")
+		cdOffset = 0;
 
 		timer = window.setInterval ->
 			if degrees >= 0
-				draw(ctx, start, center, radius, degrees, total)
-				degrees -= (360/seconds)/24
-				total -= (360/(seconds*totalSongs))/24
-				countdown =  Math.ceil(count - Math.abs((timestamp/1000) - (new Date().getTime()/1000)))
 				if countdown < 10
 					$('#countdown').html('<span>0</span>' + countdown)
 				else
@@ -131,7 +158,13 @@ createCanvas = () ->
 							console.log "we are paused"
 						else
 							window.clearInterval(paused)
+							cdOffset = Math.abs((timestamp/1000) - (new Date().getTime()/1000))
 					, 40
+				else
+					draw(ctx, start, center, radius, degrees, total)
+					degrees -= (360/seconds)/24
+					total -= (360/(seconds*totalSongs))/24
+					countdown =  Math.ceil(count - Math.abs((timestamp/1000) - (new Date().getTime()/1000))) + cdOffset
 			else
 				degrees = 359;
 				countdown = count

@@ -1,10 +1,14 @@
 #= require libs/jquery-1.7.1
 #= require libs/bootstrap
 #= require mylibs/sp
+#= require mylibs/playlist
 #= require mylibs/dnd
 #= require mylibs/timer
 
 $ ->
+	console.log('app loaded')
+	#scripts
+
 	#dropdown buttons
 	$('.dropdown-toggle').on 'click', ->
 		parent = $(this).parent()
