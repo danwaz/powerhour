@@ -1,7 +1,5 @@
 Powerhour Spotify App
 =====================
 
-...coming soon
-
-alpha builds available in the download section.
+Update Feb 9, 2003: Back in action! Coming soon!
 

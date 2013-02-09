@@ -1,106 +1,24 @@
-###
-# Compass
-###
+# Require any additional compass plugins here.
 
-# Susy grids in Compass
-# First: gem install compass-susy-plugin
-# require 'susy'
+# Set this to the root of your project when deployed:
+http_path = "/"
+css_dir = "css"
+sass_dir = "sass"
+images_dir = "img"
+javascripts_dir = "js"
 
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
+# You can select your preferred output style here (can be overridden via the command line):
+# output_style = :expanded or :nested or :compact or :compressed
 
-###
-# Haml
-###
+# To enable relative paths to assets via compass helper functions. Uncomment:
+# relative_assets = true
 
-# CodeRay syntax highlighting in Haml
-# First: gem install haml-coderay
-# require 'haml-coderay'
+# To disable debugging comments that display the original location of your selectors. Uncomment:
+# line_comments = false
 
-# CoffeeScript filters in Haml
-# First: gem install coffee-filter
-# require 'coffee-filter'
 
-# Automatic image dimensions on image_tag helper
-# activate :automatic_image_sizes
-
-###
-# Page command
-###
-
-# Per-page layout changes:
-#
-# With no layout
-# page "/path/to/file.html", :layout => false
-#
-# With alternative layout
-# page "/path/to/file.html", :layout => :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
-
-# Proxy (fake) files
-# page "/this-page-has-no-template.html", :proxy => "/template-file.html" do
-#   @which_fake_page = "Rendering a fake page with a variable"
-# end
-
-###
-# Helpers
-###
-
-# Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
-
-# Change the CSS directory
-set :css_dir, "css"
-
-# Change the JS directory
-set :js_dir, "js"
-
-# Change the images directorymanifest.json
-set :images_dir, "img"
-
-# Build-specific configuration
-configure :build do
-  # For example, change the Compass output style for deployment
-  # activate :minify_css
-
-  # Minify Javascript on build
-  # activate :minify_javascript
-
-  # Enable cache buster
-  # activate :cache_buster
-
-  # Use relative URLs
-  # activate :relative_assets
-
-  # Compress PNGs after build
-  # First: gem install middleman-smusher
-  # require "middleman-smusher"
-  # activate :smusher
-
-  # Or use a different image path
-  # set :http_path, "/Content/images/"
-end
-
-#spotify build
-module Middleman::Features::SpotifyBuild
-  class << self
-    def registered(app)
-      app.after_build do
-        `./spotify_build.sh`
-      end
-    end
-    alias :included :registered
-  end
-end
-
-activate :spotify_build
+# If you prefer the indented syntax, you might want to regenerate this
+# project again passing --syntax sass, or you can uncomment this:
+# preferred_syntax = :sass
+# and then run:
+# sass-convert -R --from scss --to sass sass scss && rm -rf sass && mv scss sass
